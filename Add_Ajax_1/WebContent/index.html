@@ -1,0 +1,36 @@
+
+<noscript>
+	<span style='color: red;size=30px'>Please enable java script</span><br>
+</noscript>
+<script lang="JavaScript">
+	var aengg;
+	function calcSum() {
+		var url;
+
+		if (window.XMLHttpRequest) {
+			aengg = new XMLHttpRequest();
+
+		} else {
+			aengg = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		aengg.onreadystatechange = writeResult;
+
+		url = "addUrl?q1=" + frm.t1.value + "&q2=" + frm.t2.value;
+		aengg.open("GET", url, true);
+		aengg.send();
+	}
+
+	function writeResult() {
+		if (aengg.readyState == 4 && aengg.status == 200) {
+			frm.t3.value = aengg.responseText;
+		}
+	}
+</script>
+<form name="frm">
+
+	Value1:<input type="text" name="t1"><br> 
+	Value2:<input type="text" name="t2"><br> 
+	<input type="button" value="add" onclick="calcSum()"> 
+	result:<input type="text" name="t3">
+
+</form>
