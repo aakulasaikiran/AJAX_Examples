@@ -1,0 +1,44 @@
+<noscript>
+	<span style='color: red;size=30px'>Please enable java script</span><br>
+</noscript>
+<script lang="JavaScript">
+	var aengg;
+	function showHint(hint) {
+		var url;
+
+		if (hint==""){
+		document.getElementById("sgt").innerHTML="no suggestions";
+		return;
+		}
+
+		
+		if (window.XMLHttpRequest) {
+			aengg = new XMLHttpRequest();
+
+		} else {
+			aengg = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		alert(aengg.readyState+"-->a");
+		
+		
+		aengg.onreadystatechange = writeResult;
+		
+		alert(aengg.readyState+"-->b");
+		
+		url="get_suggestions.jsp?q="+hint;
+		
+		aengg.open("GET", url, false);
+		alert(aengg.readyState+"-->c");
+		aengg.send();
+		alert(aengg.readyState+"-->d");
+	}
+		
+	function writeResult() {
+		if (aengg.readyState == 4 && aengg.status == 200) {
+			document.getElementById("sgt").innerHTML=aengg.responseText;
+		}
+	}
+</script>
+		
+	Name:<input type="text" name="hint" onkeyup="showHint(this.value)"><br>	
+		Suggestions:<span id="sgt"></span>
