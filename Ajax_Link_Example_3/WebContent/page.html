@@ -1,0 +1,51 @@
+<script lang="JavaScript">
+	var aengg1, aengg2;
+	function processLink1() {
+
+		if (window.XMLHttpRequest)
+			aengg1 = new XMLHttpRequest();
+		else
+			aengg1 = new ActiveXObject("Microsoft.XMLHTTP");
+		aengg1.onreadystatechange = processResult1;
+
+		aengg1.open("GET", "process1.jsp", true);
+
+		aengg1.send();
+	}
+
+	function processResult1() {
+
+		if (aengg1.readyState == 4 && aengg1.status == 200)
+			;
+		document.getElementById("result1").innerHTML = aengg1.responseText;
+	}
+
+	function processLink2() {
+
+		if (window.XMLHttpRequest)
+			aengg2 = new XMLHttpRequest();
+		else
+			aengg2 = new ActiveXObject("Microsoft.XMLHTTP");
+		aengg2.onreadystatechange = processResult2;
+
+		aengg2.open("GET", "process2.jsp", true);
+
+		aengg2.send();
+	}
+
+	function processResult2() {
+
+		if (aengg2.readyState == 4 && aengg2.status == 200)
+			;
+		document.getElementById("result2").innerHTML = aengg2.responseText;
+	}
+</script>
+<h1>
+	<a href="javascript:processLink1()">Link1</a>
+</h1>
+<span id="result1"></span>
+
+<h1>
+	<a href="javascript:processLink2()">Link2</a>
+</h1>
+<span id="result2"></span>
