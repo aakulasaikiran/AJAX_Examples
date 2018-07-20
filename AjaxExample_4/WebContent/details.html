@@ -1,0 +1,43 @@
+<script lang="JavaScript">
+	var aengg1;
+	function getDeptDetails() {
+var no;
+alert("Hello, World!");
+console.log("Hello, World!");
+		if (window.XMLHttpRequest)
+			aengg1 = new XMLHttpRequest();
+		else
+			
+			aengg1 = new ActiveXObject("Microsoft.XMLHTTP");
+		no=frm.dept.value;
+		aengg1.onreadystatechange = showResult;
+
+		aengg1.open("POST", "get_dept_details.jsp?dno="+no, true);
+
+		aengg1.send();
+	}
+
+	function showResult() {
+var xmldoc;
+		if (aengg1.readyState == 4 && aengg1.status == 200)
+			;
+		//document.getElementById("result1").innerHTML = aengg1.responseText;
+		xmldoc=aengg1.responseXML.documentElement;
+		document.getElementById("dname").innerHTML = xmldoc.getElementByTagName("deptname")[0].childNode[0].nodeValue;
+	
+		document.getElementById("dloc").innerHTML = xmldoc.getElementByTagName("deptloc")[0].childNode[0].nodeValue;
+		}	
+		}		
+			
+	</script>
+
+
+<form name="frm">
+	Dept no:<select name="dept" onchange="getDeptDetails()">
+		<option value="10">10</option>
+		<option value="20">20</option>
+		<option value="30">30</option>
+		<option value="40">40</option>
+	</select></br> Dept name<span id="dname"></span><br> Dept Loc<span id="dloc"></span><br>
+</form>
+
